@@ -1,0 +1,2 @@
+\contentsline {chapter}{\numberline {第一章\hspace {.3em}}IF模型(Integrate-and-fire models)}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}膜电压$u(t)$演变的线性微分方程推导}{1}{section.1.1}%
