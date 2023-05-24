@@ -56,6 +56,7 @@ I(t)=\frac{u(t)-u_{rest}}{R}+C\frac{du(t)}{dt}
 
 \begin{equation}
     u(t)=u_{rest}+I_{max}R(1-e^{-\frac{t}{\tau}})
+    \label{零状态响应}
 \end{equation}
 
 \begin{figure}[H]
@@ -68,6 +69,7 @@ I(t)=\frac{u(t)-u_{rest}}{R}+C\frac{du(t)}{dt}
 
 \begin{equation}
     u(t)=u_{rest}+I_{max}Re^{-\frac{t}{\tau}}
+    \label{零输入响应}
 \end{equation}
 
 \begin{figure}[H]
@@ -77,5 +79,7 @@ I(t)=\frac{u(t)-u_{rest}}{R}+C\frac{du(t)}{dt}
 \end{figure} 
 
 从而，当没有外部脉冲输入的情况下，膜电压会以指数形式衰减到$u_{rest}$。其衰减时间系数$\tau m$一般为10ms，与一般持续1ms的尖峰脉冲相比长了很多。
+
+接下来，考虑输入电流I(t)为一个短的脉冲。因为是有脉冲输入，因此对应的是公式\ref*{零状态响应}。
 
 \end{document}

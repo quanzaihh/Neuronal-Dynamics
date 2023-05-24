@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.24)  24 MAY 2023 18:10
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.24)  25 MAY 2023 00:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -679,7 +679,7 @@ File: 细胞膜等效电路.png Graphic file (type bmp)
 File: 脉冲充电图.pdf Graphic file (type pdf)
 <use 脉冲充电图.pdf>
 LaTeX Font Info:    Font shape `TU/SimSun(0)/m/sl' in size <12> not available
-(Font)              Font shape `TU/SimSun(0)/m/it' tried instead on input line 66.
+(Font)              Font shape `TU/SimSun(0)/m/it' tried instead on input line 67.
  [2]
 File: 脉冲放电图.pdf Graphic file (type pdf)
 <use 脉冲放电图.pdf>
@@ -688,10 +688,10 @@ Package rerunfilecheck Info: File `Chapter1.out' has not changed.
 (rerunfilecheck)             Checksum: 1D63D3D436A48F5BF89CF8BA6CD42F7D;405.
  ) 
 Here is how much of TeX's memory you used:
- 18719 strings out of 476683
- 412050 string characters out of 5807575
+ 18721 strings out of 476683
+ 412064 string characters out of 5807575
  1853012 words of memory out of 5000000
- 38620 multiletter control sequences out of 15000+600000
+ 38622 multiletter control sequences out of 15000+600000
  530903 words of font info for 126 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  94i,6n,97p,437b,359s stack positions out of 10000i,1000n,20000p,200000b,200000s
