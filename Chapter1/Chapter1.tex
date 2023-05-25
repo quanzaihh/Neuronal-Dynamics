@@ -1,5 +1,38 @@
+\special{dvipdfmx:config z 0}
 \documentclass[12pt, a4paper, oneside]{ctexbook}
 \usepackage{amsmath, amsthm, amssymb, bm, graphicx, hyperref, mathrsfs, float, subfigure, svg}
+
+\usepackage{listings}
+\usepackage{ctex}
+
+% 用来设置附录中代码的样式
+
+\lstset{
+    basicstyle          =   \sffamily,          % 基本代码风格
+    keywordstyle        =   \bfseries,          % 关键字风格
+    commentstyle        =   \rmfamily\itshape,  % 注释的风格，斜体
+    stringstyle         =   \ttfamily,  % 字符串风格
+    flexiblecolumns,                % 别问为什么，加上这个
+    numbers             =   left,   % 行号的位置在左边
+    showspaces          =   false,  % 是否显示空格，显示了有点乱，所以不现实了
+    numberstyle         =   \zihao{-5}\ttfamily,    % 行号的样式，小五号，tt等宽字体
+    showstringspaces    =   false,
+    captionpos          =   t,      % 这段代码的名字所呈现的位置，t指的是top上面
+    frame               =   lrtb,   % 显示边框
+}
+
+\lstdefinestyle{Python}{
+    language        =   Python, % 语言选Python
+    basicstyle      =   \zihao{-5}\ttfamily,
+    numberstyle     =   \zihao{-5}\ttfamily,
+    keywordstyle    =   \color{blue},
+    keywordstyle    =   [2] \color{teal},
+    stringstyle     =   \color{magenta},
+    commentstyle    =   \color{red}\ttfamily,
+    breaklines      =   true,   % 自动换行，建议不要写太长的行
+    columns         =   fixed,  % 如果不加这一句，字间距就不固定，很丑，必须加
+    basewidth       =   0.5em,
+}
 
 \title{{\Huge{\textbf{Chapter1 神经元和数学方法}}}}
 \author{黄志权}
@@ -29,7 +62,7 @@
 \pagenumbering{arabic}
 
 \chapter{IF模型(Integrate-and-fire models)}
-神经元的动力模型可以被简化为：树突接收若干的脉冲信号，并积累到细胞膜上，致使细胞膜电压改变，从而产生动作电位。LF模型则是将动作电位描述成事件的模型。它由两个部分组成：1、描述膜电压$u(t)$演变的线性微分方程；2、描述spike的发射机制。
+神经元的动力模型可以被简化为：树突接收若干的脉冲信号，并积累到细胞膜上，致使细胞膜电压改变，从而产生动作电位。LF模型则是将动作电位描述成事件的模型。
 
 \section{膜电压$u(t)$演变的线性微分方程推导}
 对于神经元细胞，我们可以将其想象为如下的RC电路。细胞膜就像是一个与电阻并联的电容器，而电阻连接着一个电压为$u_{rest}$电池。当没有外界输入时，膜电压$u(t)$为初始值$u_{rest}$；当有外界脉冲输入时，相当于给电容提供电流为$I(t)$的充电，从而改变模电压$u(t)$。//PS:这个电阻也被称为漏电阻。由于在没有外界输入时，膜上电荷会逐渐穿过细胞膜泄露出去，让膜电压回归$u_{rest}$，因此引入一个漏电阻来模拟这种现象。
@@ -50,12 +83,13 @@ I(t)=\frac{u(t)-u_{rest}}{R}+C\frac{du(t)}{dt}
 
 \begin{equation}
     \tau _m\frac{du(t)}{dt}= -[u(t)-u_{rest}] + RI(t)
+    \label{微分方程}
 \end{equation}
 
-上式在电路分析中称为RC电路响应方程，在神经科学领域称为无源膜方程(equation of a passive membrane)。这个方程的解分为两个部分。即输入脉冲的充电过程（零状态响应），和没有输入脉冲，电压泄露到$u_{rest}$的过程（零状态响应）。首先是输入脉冲的充电过程（零状态响应），我们假设输入电流脉冲是一个幅值为$I_{max}$的方波，则其方程如下：
+上式在电路分析中称为RC电路响应方程，在神经科学领域称为无源膜方程(equation of a passive membrane)。这个方程的解分为两个部分。即输入脉冲的充电过程（零状态响应），和没有输入脉冲，电压泄露到$u_{rest}$的过程（零状态响应）。首先是输入脉冲的充电过程（零状态响应），我们假设输入电流脉冲在$t_0$时刻是一个幅值为$I_{max}$的方波，则其方程如下：
 
 \begin{equation}
-    u(t)=u_{rest}+I_{max}R(1-e^{-\frac{t}{\tau}})
+    u(t)=u_{rest}+I_{max}R(1-e^{-\frac{t-t_0}{\tau_m}})
     \label{零状态响应}
 \end{equation}
 
@@ -65,10 +99,12 @@ I(t)=\frac{u(t)-u_{rest}}{R}+C\frac{du(t)}{dt}
     \caption{脉冲充电图}
 \end{figure} 
 
-然后是电压泄露到$u_{rest}$的过程（零状态响应）：
+然后是电压泄露到$u_{rest}$的过程（零状态响应），假设脉冲在$t_1$时刻结束：
 
 \begin{equation}
-    u(t)=u_{rest}+I_{max}Re^{-\frac{t}{\tau}}
+    \begin{aligned}
+        u(t)&=u_{rest}+\Delta u Re^{-\frac{t-t_1}{\tau_m}}\\ \Delta u&=u(0)-u_{rest}
+    \end{aligned}
     \label{零输入响应}
 \end{equation}
 
@@ -79,7 +115,69 @@ I(t)=\frac{u(t)-u_{rest}}{R}+C\frac{du(t)}{dt}
 \end{figure} 
 
 从而，当没有外部脉冲输入的情况下，膜电压会以指数形式衰减到$u_{rest}$。其衰减时间系数$\tau m$一般为10ms，与一般持续1ms的尖峰脉冲相比长了很多。
+ 
+我们可以绘制对于方波输入，膜电压的变化图。我一开始打算利用解析解来绘制，但是发现分段条件太难设置了。因此我选择使用微分方程\ref*{微分方程}来模拟，这样子写成递归函数，会非常简便好看。代码和仿真图如下：\\
 
-接下来，考虑输入电流I(t)为一个短的脉冲。因为是有脉冲输入，因此对应的是公式\ref*{零状态响应}。
+\begin{lstlisting}[language=Python]
+def U(t_scale, tou, u_t_1, I, R, u_rest):
+    return (-(u_t_1 - u_rest) + R*I)/tou*t_scale + u_t_1
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{方波输入响应图.pdf}
+    \caption{方波输入响应图}
+\end{figure} 
+
+接下来，考虑输入电流I(t)为一个持续时间为$\Delta$的一个非常短的脉冲。其膜电压轨迹由\ref*{零状态响应}改写得：$u(\Delta)=u_{rest}+I_{max}R(1-e^{-\frac{\Delta}{\tau}})$。对e指数函数做泰勒展开，由于$\Delta$已经很小了，因此只需考虑其一阶情况即可：
+
+\begin{equation}
+    u(\Delta)=u_{rest}+I_{max}R\frac{\Delta}{\tau_m}\qquad for \Delta<<\tau_m
+    \label{膜电压一阶泰勒}
+\end{equation}
+
+然后我们把$\Delta$推至无穷小，并I(t)变形为一个$\delta$函数。从而得到一个总电量$q=I(t)\Delta$不变的脉冲。将$q=I(t)\Delta$以及$\tau_m=RC$代入上式可得：
+
+\begin{equation}
+    u(\Delta)=u_{rest}+\frac{q}{C}
+    \label{狄拉克函数}
+\end{equation}
+
+然后，可以得到输入脉冲结束后电压泄露到$u_{rest}$的过程。将上式带入\ref*{零输入响应}，可得：
+
+\begin{equation}
+    u(t)=u_{rest}+\frac{q}{C}e^{-\frac{t-t_0}{\tau_m}}
+    \label{脉冲响应}
+\end{equation}
+
+当膜电压高于阈值时，会发射一个脉冲，然后膜电压被重置为$u_{r}$，一定要注意，$u_{r}!=u_{rest}$，而是比$u_{rest}$要低一些。记在$t^f$时刻发射了脉冲。那么发射脉冲序列可以用狄拉克求和表示：
+
+\begin{equation}
+    S(t)=\sum \delta (t-t^f)
+\end{equation}
+
+前面\ref*{零状态响应}和\ref*{零输入响应}零状态响应和零输入响应描述的都是I(t)为恒定状态的情况。下面考虑I(t)为连续的变化信号的情况。由于离散的电流I输入实质上是给细胞膜引入一个$\Delta u=\frac{q}{C}=IR$的电压变化，因此连续变化的I(t)输入即公式\ref*{脉冲响应}与I(t)的卷积：
+
+\begin{equation}
+    \begin{aligned}
+        u(t)&=u_{rest}+\frac{q}{C}e^{-\frac{t}{\tau_m}}\\
+        u(t)&=u_{rest}+IRe^{-\frac{t}{\tau_m}}\\
+        u(t)&=u_{rest}+RI(t)\bigotimes e^{-\frac{t}{\tau_m}}\\
+        u(t)&=u_{rest}+R\int_0^{+\infty}I(t-s)e^{-\frac{s}{\tau_m}}d\frac{s}{\tau_m}\\
+        u(t)&=u_{rest}+\frac{R}{\tau_m}\int_0^{+\infty}I(t-s)e^{-\frac{s}{\tau_m}}ds
+    \end{aligned}
+\end{equation}
+
+上面的式子相当于把输入电流分成无数多小的脉冲，每一个脉冲都会产生$\Delta ue^{-\frac{t}{\tau_m}}$的膜电压变化，然后全部积分起来。那么，同理，我们也可以用同样的方式描述发射脉冲的过程。发射一个脉冲，等价于膜上减少了$\vartheta -u_{r}$的电压，考虑到发射脉冲是离散的，因此我们可以表示为：
+
+\begin{equation}
+    \sum -(\vartheta -u_{r})e^{-\frac{t-t^f}{\tau_m}}
+\end{equation}
+
+因此，描述LF整个输入-输出的膜电压函数为：
+
+\begin{equation}
+    u(t)=u_{rest}+\sum_f -(\vartheta -u_{r})e^{-\frac{t-t^f}{\tau_m}}+\frac{R}{\tau_m}\int_0^{+\infty}I(t-s)e^{-\frac{s}{\tau_m}}ds
+\end{equation}
 
 \end{document}
