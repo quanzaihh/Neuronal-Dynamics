@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.24)  25 MAY 2023 16:16
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.24)  26 MAY 2023 14:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -710,7 +710,7 @@ File: 细胞膜等效电路.png Graphic file (type bmp)
 File: 脉冲充电图.pdf Graphic file (type pdf)
 <use 脉冲充电图.pdf>
 LaTeX Font Info:    Font shape `TU/SimSun(0)/m/sl' in size <12> not available
-(Font)              Font shape `TU/SimSun(0)/m/it' tried instead on input line 101.
+(Font)              Font shape `TU/SimSun(0)/m/it' tried instead on input line 109.
  [2]
 File: 脉冲放电图.pdf Graphic file (type pdf)
 <use 脉冲放电图.pdf>
@@ -721,7 +721,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 119--120
 
 (e:/texlive/2023/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2023/02/27 1.9 listings language file
-) [3]
+)
 
 Package fontspec Info: Could not resolve font "Microsoft YaHei Bold/I" (it
 (fontspec)             probably doesn't exist).
@@ -773,17 +773,26 @@ Package fontspec Info: Font family 'FangSong(0)' created for font 'FangSong'
 
 File: 方波输入响应图.pdf Graphic file (type pdf)
 <use 方波输入响应图.pdf>
- [4] [5] (./Chapter1.aux)
+ [3] [4] [5]
+
+LaTeX Warning: Reference `，' on page 6 undefined on input line 198.
+
+File: 增益和频率的关系.pdf Graphic file (type pdf)
+<use 增益和频率的关系.pdf>
+[6] (./Chapter1.aux)
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `Chapter1.out' has not changed.
-(rerunfilecheck)             Checksum: 1D63D3D436A48F5BF89CF8BA6CD42F7D;405.
+(rerunfilecheck)             Checksum: 4329A6839A26C3FDB068A9BCC1079D26;595.
  ) 
 Here is how much of TeX's memory you used:
- 20205 strings out of 476683
- 434816 string characters out of 5807575
+ 20203 strings out of 476683
+ 434244 string characters out of 5807575
  1859012 words of memory out of 5000000
- 40057 multiletter control sequences out of 15000+600000
+ 40054 multiletter control sequences out of 15000+600000
  531023 words of font info for 141 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  94i,8n,97p,437b,1566s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Chapter1.pdf (7 pages).
+Output written on Chapter1.pdf (8 pages).

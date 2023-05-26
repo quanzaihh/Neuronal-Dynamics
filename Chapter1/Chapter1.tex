@@ -161,10 +161,10 @@ def U(t_scale, tou, u_t_1, I, R, u_rest):
 \begin{equation}
     \begin{aligned}
         u(t)&=u_{rest}+\frac{q}{C}e^{-\frac{t}{\tau_m}}\\
-        u(t)&=u_{rest}+IRe^{-\frac{t}{\tau_m}}\\
-        u(t)&=u_{rest}+RI(t)\bigotimes e^{-\frac{t}{\tau_m}}\\
-        u(t)&=u_{rest}+R\int_0^{+\infty}I(t-s)e^{-\frac{s}{\tau_m}}d\frac{s}{\tau_m}\\
-        u(t)&=u_{rest}+\frac{R}{\tau_m}\int_0^{+\infty}I(t-s)e^{-\frac{s}{\tau_m}}ds
+        &=u_{rest}+IRe^{-\frac{t}{\tau_m}}\\
+        &=u_{rest}+RI(t)\bigotimes e^{-\frac{t}{\tau_m}}\\
+        &=u_{rest}+R\int_0^{+\infty}I(t-s)e^{-\frac{s}{\tau_m}}d\frac{s}{\tau_m}\\
+        &=u_{rest}+\frac{R}{\tau_m}\int_0^{+\infty}I(t-s)e^{-\frac{s}{\tau_m}}ds
     \end{aligned}
 \end{equation}
 
@@ -179,5 +179,43 @@ def U(t_scale, tou, u_t_1, I, R, u_rest):
 \begin{equation}
     u(t)=u_{rest}+\sum_f -(\vartheta -u_{r})e^{-\frac{t-t^f}{\tau_m}}+\frac{R}{\tau_m}\int_0^{+\infty}I(t-s)e^{-\frac{s}{\tau_m}}ds
 \end{equation}
+
+\section{输入电流为周期性驱动及其傅里叶变换}
+
+下面我们分析输入电流I(t)为周期性函数时，其膜电压响应的形式。我们定义$\kappa (s)=\frac{1}{C}e^{\frac{s}{\tau_m}}$，则输入电流引起的膜电压的响应可以写作:
+
+\begin{equation}
+    u(t)=\int_0^{+\infty}I(t-s)\kappa (s)ds
+    \label{卷积公式}
+\end{equation}
+
+它具有很漂亮的滤波器的形式，可以看做是滤波器$\kappa(s)$对输入电流I(t)卷积。利用傅里叶变换(Fourier transform)可以得到其频域响应:
+
+\begin{equation}
+    u(\omega )=I(\omega )\kappa (\omega )
+\end{equation}
+
+现在我们考虑$I(t)=I_0e^{i\omega t}$\ref*，代入{卷积公式}可得：
+
+\begin{equation}
+    \begin{aligned}
+        u(t)&=\int_0^{+\infty}\kappa (s)e^{-i\omega s}dsI_0e^{i\omega t}\\
+        &=\kappa (\omega)I_0e^{i\omega t}
+    \end{aligned}
+\end{equation}
+
+考虑$u(t)=u_0e^{i(\phi \kappa(\omega)+\omega t)}$，那么其实部增益就可以写作：
+
+\begin{equation}
+    \frac{u_0}{I_0}=|\kappa (\omega)|=\int_0^{+\infty}\kappa (s)e^{-i\omega s}ds=\frac{1}{C}|\frac{\tau_m}{1+i\omega \tau_m}|
+\end{equation}
+
+由于$\omega \tau_m\gg 1$，因此增益约等于$\frac{1}{C\omega}$。因此，其电压增益和输入频率成反比。下面我在python中试验一下嘿嘿。利用Brian2开源包构建LIF模型，频率从50Hz-500Hz，我们观察其spike的次数。可以看到，spike次数随频率增加有减少的趋势，一定程度上验证了上面的增益公式。
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{增益和频率的关系.pdf}
+    \caption{增益和频率的关系图}
+\end{figure} 
 
 \end{document}
