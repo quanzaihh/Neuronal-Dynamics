@@ -136,7 +136,7 @@ def U(t_scale, tou, u_t_1, I, R, u_rest):
     \label{膜电压一阶泰勒}
 \end{equation}
 
-然后我们把$\Delta$推至无穷小，并I(t)变形为一个$\delta$函数。从而得到一个总电量$q=I(t)\Delta$不变的脉冲。将$q=I(t)\Delta$以及$\tau_m=RC$代入上式可得：
+然后我们把$\Delta$推至无穷小，并I(t)变形为一个$\delta$函数。从而得到一个总电量$q=I_0\Delta$不变的脉冲。将$q=I_0\Delta$以及$\tau_m=RC$代入上式可得：
 
 \begin{equation}
     u(\Delta)=u_{rest}+\frac{q}{C}
@@ -150,7 +150,7 @@ def U(t_scale, tou, u_t_1, I, R, u_rest):
     \label{脉冲响应}
 \end{equation}
 
-当膜电压高于阈值时，会发射一个脉冲，然后膜电压被重置为$u_{r}$，一定要注意，$u_{r}!=u_{rest}$，而是比$u_{rest}$要低一些。记在$t^f$时刻发射了脉冲。那么发射脉冲序列可以用狄拉克求和表示：
+从而可以发现，非常窄电流脉冲输入等价于给细胞膜增加了一个$\frac{q}{C}$的电压。当膜电压高于阈值时，会发射一个脉冲，然后膜电压被重置为$u_{r}$，一定要注意，$u_{r}!=u_{rest}$，而是比$u_{rest}$要低一些。记在$t^f$时刻发射了脉冲。那么发射脉冲序列可以用狄拉克求和表示：
 
 \begin{equation}
     S(t)=\sum \delta (t-t^f)
@@ -171,7 +171,7 @@ def U(t_scale, tou, u_t_1, I, R, u_rest):
 上面的式子相当于把输入电流分成无数多小的脉冲，每一个脉冲都会产生$\Delta ue^{-\frac{t}{\tau_m}}$的膜电压变化，然后全部积分起来。那么，同理，我们也可以用同样的方式描述发射脉冲的过程。发射一个脉冲，等价于膜上减少了$\vartheta -u_{r}$的电压，考虑到发射脉冲是离散的，因此我们可以表示为：
 
 \begin{equation}
-    \sum -(\vartheta -u_{r})e^{-\frac{t-t^f}{\tau_m}}
+    \sum_f -(\vartheta -u_{r})e^{-\frac{t-t^f}{\tau_m}}
 \end{equation}
 
 因此，描述LF整个输入-输出的膜电压函数为：
@@ -195,7 +195,7 @@ def U(t_scale, tou, u_t_1, I, R, u_rest):
     u(\omega )=I(\omega )\kappa (\omega )
 \end{equation}
 
-现在我们考虑$I(t)=I_0e^{i\omega t}$\ref*，代入{卷积公式}可得：
+现在我们考虑$I(t)=I_0e^{i\omega t}$，代入\ref*{卷积公式}可得：
 
 \begin{equation}
     \begin{aligned}

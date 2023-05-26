@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.24)  26 MAY 2023 14:17
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.24)  26 MAY 2023 18:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -774,25 +774,19 @@ Package fontspec Info: Font family 'FangSong(0)' created for font 'FangSong'
 File: 方波输入响应图.pdf Graphic file (type pdf)
 <use 方波输入响应图.pdf>
  [3] [4] [5]
-
-LaTeX Warning: Reference `，' on page 6 undefined on input line 198.
-
 File: 增益和频率的关系.pdf Graphic file (type pdf)
 <use 增益和频率的关系.pdf>
-[6] (./Chapter1.aux)
-
-LaTeX Warning: There were undefined references.
-
+ [6] [7] (./Chapter1.aux)
 Package rerunfilecheck Info: File `Chapter1.out' has not changed.
 (rerunfilecheck)             Checksum: 4329A6839A26C3FDB068A9BCC1079D26;595.
  ) 
 Here is how much of TeX's memory you used:
- 20203 strings out of 476683
- 434244 string characters out of 5807575
- 1859012 words of memory out of 5000000
- 40054 multiletter control sequences out of 15000+600000
+ 20202 strings out of 476683
+ 434241 string characters out of 5807575
+ 1858012 words of memory out of 5000000
+ 40053 multiletter control sequences out of 15000+600000
  531023 words of font info for 141 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  94i,8n,97p,437b,1566s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Chapter1.pdf (8 pages).
+Output written on Chapter1.pdf (9 pages).
