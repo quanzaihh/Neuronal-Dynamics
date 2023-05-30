@@ -253,7 +253,7 @@ def U(t_scale, tou, u_t_1, I, R, u_rest):
 代入公式\ref*{卷积}，求解其卷积响应即可。我的信号与系统有点忘光了，求了蛮久，响应如下(没化简)：
 
 \begin{equation}
-    u(t)=u_{reset}+\frac{qR}{\tau_m-\tau_s}e^{-\frac{t-t_f}{\tau_s}}[e^{\frac{\tau_m-\tau_s}{\tau_m\tau_s}t}-e^{\frac{\tau_m-\tau_s}{\tau_m\tau_s}t_f}]
+    u(t)=u_{reset}+\frac{qR}{\tau_m-\tau_s}e^{-\frac{t-t_f}{\tau_s}}[e^{(t-t_f)(\frac{1}{\tau_s}-\frac{1}{\tau_m})}-1]
     \label{1.a的解}
 \end{equation}
 
@@ -271,11 +271,9 @@ def U(t_scale, tou, u_t_1, I, R, u_rest):
 
 \begin{equation}
     \begin{aligned}
-        &\lim_{\tau_s\to\tau_m}=\frac{e^{\frac{\tau_m-\tau_s}{\tau_m\tau_s}t}-e^{\frac{\tau_m-\tau_s}{\tau_m\tau_s}t_f}}{\tau_s\-\tau_m}\\
-        &\text{令$x=\frac{\tau_m-\tau_s}{\tau_m\tau_s}$}\\
-        &=\lim_{x\to0}=\frac{e^{xt}-e^{xt_f}}{\tau_m\tau_sx}\\
-        &\text{洛必达}\\
-        &=\lim_{x\to0}=\frac{te^{xt}-t_fe^{xt_f}}{\tau_m\tau_s}\\
+        &\lim_{\tau_s\to\tau_m}=\frac{e^{(t-t_f)(\frac{1}{\tau_s}-\frac{1}{\tau_m})}-1}{\tau_s-\tau_m}\\
+        &\text{利用等价无穷小}\\
+        &=\lim_{\tau_s\to\tau_m}=\frac{(t-t_f)(\frac{1}{\tau_s}-\frac{1}{\tau_m})}{\tau_m-\tau_s}\\
         &=\frac{t-t_f}{\tau_m\tau_s}
     \end{aligned}
 \end{equation}
@@ -287,5 +285,25 @@ def U(t_scale, tou, u_t_1, I, R, u_rest):
 \end{equation}
 
 从而可以证明，$u(t)$确实是与$[t-t^{f}]\exp[-\frac{t-t^{f}}{\tau_\text{s}}]$成正比的。
+
+\textbf{(c)在(a)的解中，取极限$\tau_s\to0$。看看能不能把你的结论和狄拉克函数联系在一起？}\\\\
+
+对公式\ref*{1.a的解}取极限，得：
+
+\begin{equation}
+    \begin{aligned}
+        &\lim_{\tau_s\to0}u_{reset}+\frac{qR}{\tau_m-\tau_s}e^{-\frac{t-t_f}{\tau_s}}[e^{(t-t_f)(\frac{1}{\tau_s}-\frac{1}{\tau_m})}-1]\\
+        &=\lim_{\tau_s\to0}u_{reset}+\frac{qR}{\tau_m-\tau_s}[e^{-\frac{t-t_f}{\tau_m}}-e^{-\frac{t-t_f}{\tau_s}}]\\
+        &=u_{reset}+\frac{qR}{\tau_m}e^{-\frac{t-t_f}{\tau_m}}\qquad(t>t_f)
+    \end{aligned}
+\end{equation}
+
+可以看到，当$\tau_s\to0$时，膜电压变化公式退化为公式\ref*{脉冲响应}，即输入为狄拉克脉冲时的情形。同样，我们通过mathematica仿真一下。非常漂亮的一张图。
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{exercise/1.c.pdf}
+    \caption{1.cpdf}
+\end{figure}
 
 \end{document}

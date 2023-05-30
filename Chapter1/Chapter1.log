@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.24)  30 MAY 2023 18:37
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.24)  30 MAY 2023 22:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -797,17 +797,29 @@ Underfull \hbox (badness 10000) in paragraph at lines 268--269
 
  []
 
-[9] [10] (./Chapter1.aux)
+[9]
+Underfull \hbox (badness 10000) in paragraph at lines 289--290
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 289--290
+
+ []
+
+File: exercise/1.c.pdf Graphic file (type pdf)
+<use exercise/1.c.pdf>
+[10] [11] (./Chapter1.aux)
 Package rerunfilecheck Info: File `Chapter1.out' has not changed.
 (rerunfilecheck)             Checksum: F63515B546B00B019CFD05170CA7E2CF;895.
  ) 
 Here is how much of TeX's memory you used:
- 20293 strings out of 476683
- 437509 string characters out of 5807575
+ 20296 strings out of 476683
+ 438165 string characters out of 5807575
  1861012 words of memory out of 5000000
- 40123 multiletter control sequences out of 15000+600000
- 532820 words of font info for 157 fonts, out of 8000000 for 9000
+ 40133 multiletter control sequences out of 15000+600000
+ 531079 words of font info for 148 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 94i,12n,97p,495b,1566s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 94i,9n,97p,495b,1566s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Chapter1.pdf (12 pages).
+Output written on Chapter1.pdf (13 pages).
