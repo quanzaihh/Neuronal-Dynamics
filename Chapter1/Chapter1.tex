@@ -1,7 +1,6 @@
-\special{dvipdfmx:config z 0}
+% \special{dvipdfmx:config z 0}
 \documentclass[12pt, a4paper, oneside]{ctexbook}
 \usepackage{amsmath, amsthm, amssymb, bm, graphicx, hyperref, mathrsfs, float, subfigure, svg}
-
 \usepackage{listings}
 \usepackage{ctex}
 
@@ -166,6 +165,7 @@ def U(t_scale, tou, u_t_1, I, R, u_rest):
         &=u_{rest}+R\int_0^{+\infty}I(t-s)e^{-\frac{s}{\tau_m}}d\frac{s}{\tau_m}\\
         &=u_{rest}+\frac{R}{\tau_m}\int_0^{+\infty}I(t-s)e^{-\frac{s}{\tau_m}}ds
     \end{aligned}
+    \label{卷积}
 \end{equation}
 
 上面的式子相当于把输入电流分成无数多小的脉冲，每一个脉冲都会产生$\Delta ue^{-\frac{t}{\tau_m}}$的膜电压变化，然后全部积分起来。那么，同理，我们也可以用同样的方式描述发射脉冲的过程。发射一个脉冲，等价于膜上减少了$\vartheta -u_{r}$的电压，考虑到发射脉冲是离散的，因此我们可以表示为：
@@ -246,5 +246,46 @@ def U(t_scale, tou, u_t_1, I, R, u_rest):
     \tau_{\text{adapt}}\frac{\mathbf{d}}{\mathbf{d}t}\vartheta(t)=-[\vartheta(t)-\vartheta_0]+\theta\sum\limits_f\delta(t-t^f)
 \end{equation}
 
+\section{练习题}
+
+1、考虑突触输入电流为$\frac{q}{\tau_s}e^{-\frac{t-t_f}{\tau_s}}$($t>t_f$)，$t_f$是电流到达突触的时间。\\
+\textbf{(a)求膜电压响应}\\\\
+代入公式\ref*{卷积}，求解其卷积响应即可。我的信号与系统有点忘光了，求了蛮久，响应如下(没化简)：
+
+\begin{equation}
+    u(t)=u_{reset}+\frac{qR}{\tau_m-\tau_s}e^{-\frac{t-t_f}{\tau_s}}[e^{\frac{\tau_m-\tau_s}{\tau_m\tau_s}t}-e^{\frac{\tau_m-\tau_s}{\tau_m\tau_s}t_f}]
+    \label{1.a的解}
+\end{equation}
+
+在mathematica文件\href{./exercise/exercise.nb}{exercise.nb}中验证了上式的正确性。并绘制了响应图
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{exercise/1.a.pdf}
+    \caption{1.apdf}
+\end{figure}
+
+\textbf{(b)在(a)的解中，取极限$\tau_s\to\tau_m$，并证明响应与$[t-t^{f}]\exp[-\frac{t-t^{f}}{\tau_\text{s}}]$成正比。这种形式的函数有时候被称为$\alpha$函数。}\\\\
+
+显然，我们先计算如下部分:
+
+\begin{equation}
+    \begin{aligned}
+        &\lim_{\tau_s\to\tau_m}=\frac{e^{\frac{\tau_m-\tau_s}{\tau_m\tau_s}t}-e^{\frac{\tau_m-\tau_s}{\tau_m\tau_s}t_f}}{\tau_s\-\tau_m}\\
+        &\text{令$x=\frac{\tau_m-\tau_s}{\tau_m\tau_s}$}\\
+        &=\lim_{x\to0}=\frac{e^{xt}-e^{xt_f}}{\tau_m\tau_sx}\\
+        &\text{洛必达}\\
+        &=\lim_{x\to0}=\frac{te^{xt}-t_fe^{xt_f}}{\tau_m\tau_s}\\
+        &=\frac{t-t_f}{\tau_m\tau_s}
+    \end{aligned}
+\end{equation}
+
+代入公式\ref*{1.a的解}，可得:
+
+\begin{equation}
+    u(t)=u_{reset}+\frac{qR}{\tau_m\tau_s}e^{-\frac{t-t_f}{\tau_s}}[t-t_f]
+\end{equation}
+
+从而可以证明，$u(t)$确实是与$[t-t^{f}]\exp[-\frac{t-t^{f}}{\tau_\text{s}}]$成正比的。
 
 \end{document}
