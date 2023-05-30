@@ -61,7 +61,7 @@
 \setcounter{page}{1}
 \pagenumbering{arabic}
 
-\chapter{IF模型(Integrate-and-fire models)}
+\chapter{LIF模型(Leaky-Integrate-and-fire models)}
 神经元的动力模型可以被简化为：树突接收若干的脉冲信号，并积累到细胞膜上，致使细胞膜电压改变，从而产生动作电位。LF模型则是将动作电位描述成事件的模型。
 
 \section{膜电压$u(t)$演变的线性微分方程推导}
@@ -217,5 +217,34 @@ def U(t_scale, tou, u_t_1, I, R, u_rest):
     \includegraphics[width=0.5\textwidth]{增益和频率的关系.pdf}
     \caption{增益和频率的关系图}
 \end{figure} 
+
+\section{LIF模型的局限性}
+
+我们介绍几种生物学上常见的神经元并以此阐述LIF模型的局限性。如下图所示：
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{四种神经元.png}
+    \caption{四种神经元}
+\end{figure}
+
+图(a)所示就是LIF模型的神经元，对于一个持续的电流输入，由于神经元在每一次spike时都会重置为$u_{r}$，因此输出的spike序列是一个周期性的序列，这一类神经元也被称为\textbf{快速神经元(fast-spike neurons)}。图(b)所示的神经元叫做\textbf{突发口吃神经元(bursting and stuttering neurons)}，它的特点是对于一个持续的电流输入，在一段时间内表现出周期性的输出，又非周期的出现一段长时间的不应期。图(c)所示的神经元叫做\textbf{适应性神经元(adaptation neurons)}，与快速神经元不同，它具有适应性，它会积累输入的变化，在一段时间后变成稳定的脉冲输出。最后一种是\textbf{抑制后反弹神经元( post-inhibitory rebound neurons)}，它会在输入停止后出现一个尖峰脉冲。上述的神经元在后面的章节中会做进一步讨论。
+
+\section{总结}
+由此，我们得到了神经元膜电压的积分方程，以及脉冲发射的方程。
+
+\begin{equation}
+    \begin{aligned}
+        \tau _m\frac{du(t)}{dt}= -[u(t)-u_{rest}] + RI(t)\\
+        \text{If}\quad u(t)=\vartheta \quad then \lim_{\delta \to 0;\delta>0} u(t+\delta)=u_r 
+    \end{aligned}
+\end{equation}
+
+这个方程很简洁，也很好。但是在实际的神经元实验中，神经元会出现不应期(refractory)和适应性(adaptation)。不应期好处理。适应性考虑如下办法：每输出一个脉冲，给阈值$\vartheta$加一个小量，当输出脉冲为零(即静止状态时)，阈值$\vartheta$衰减为初始值。仿照电路响应的微分方程，可以得到如下形式：公式中$\tau_{\text{adapt}}$为适应的时间常数，根据神经科学的实验，一般为几百毫秒。
+
+\begin{equation}
+    \tau_{\text{adapt}}\frac{\mathbf{d}}{\mathbf{d}t}\vartheta(t)=-[\vartheta(t)-\vartheta_0]+\theta\sum\limits_f\delta(t-t^f)
+\end{equation}
+
 
 \end{document}

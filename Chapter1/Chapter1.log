@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.24)  26 MAY 2023 18:20
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.24)  27 MAY 2023 22:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -710,7 +710,7 @@ File: 细胞膜等效电路.png Graphic file (type bmp)
 File: 脉冲充电图.pdf Graphic file (type pdf)
 <use 脉冲充电图.pdf>
 LaTeX Font Info:    Font shape `TU/SimSun(0)/m/sl' in size <12> not available
-(Font)              Font shape `TU/SimSun(0)/m/it' tried instead on input line 109.
+(Font)              Font shape `TU/SimSun(0)/m/it' tried instead on input line 101.
  [2]
 File: 脉冲放电图.pdf Graphic file (type pdf)
 <use 脉冲放电图.pdf>
@@ -721,7 +721,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 119--120
 
 (e:/texlive/2023/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2023/02/27 1.9 listings language file
-)
+) [3]
 
 Package fontspec Info: Could not resolve font "Microsoft YaHei Bold/I" (it
 (fontspec)             probably doesn't exist).
@@ -773,20 +773,23 @@ Package fontspec Info: Font family 'FangSong(0)' created for font 'FangSong'
 
 File: 方波输入响应图.pdf Graphic file (type pdf)
 <use 方波输入响应图.pdf>
- [3] [4] [5]
+ [4] [5]
 File: 增益和频率的关系.pdf Graphic file (type pdf)
 <use 增益和频率的关系.pdf>
- [6] [7] (./Chapter1.aux)
+ [6]
+File: 四种神经元.png Graphic file (type bmp)
+<四种神经元.png>
+ [7] [8] (./Chapter1.aux)
 Package rerunfilecheck Info: File `Chapter1.out' has not changed.
-(rerunfilecheck)             Checksum: 4329A6839A26C3FDB068A9BCC1079D26;595.
+(rerunfilecheck)             Checksum: BDAC7F198FCE17CA63BAAE533956807A;817.
  ) 
 Here is how much of TeX's memory you used:
- 20202 strings out of 476683
- 434241 string characters out of 5807575
- 1858012 words of memory out of 5000000
- 40053 multiletter control sequences out of 15000+600000
- 531023 words of font info for 141 fonts, out of 8000000 for 9000
+ 20217 strings out of 476683
+ 434549 string characters out of 5807575
+ 1861012 words of memory out of 5000000
+ 40063 multiletter control sequences out of 15000+600000
+ 531047 words of font info for 144 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 94i,8n,97p,437b,1566s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 94i,9n,97p,495b,1566s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Chapter1.pdf (9 pages).
+Output written on Chapter1.pdf (10 pages).
