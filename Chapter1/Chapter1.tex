@@ -248,7 +248,7 @@ def U(t_scale, tou, u_t_1, I, R, u_rest):
 
 \section{练习题}
 
-1、考虑突触输入电流为$\frac{q}{\tau_s}e^{-\frac{t-t_f}{\tau_s}}$($t>t_f$)，$t_f$是电流到达突触的时间。\\
+\textbf{1、考虑突触输入电流为$\frac{q}{\tau_s}e^{-\frac{t-t_f}{\tau_s}}$($t>t_f$)，$t_f$是电流到达突触的时间。}\\
 \textbf{(a)求膜电压响应}\\\\
 代入公式\ref*{卷积}，求解其卷积响应即可。我的信号与系统有点忘光了，求了蛮久，响应如下(没化简)：
 
@@ -305,5 +305,63 @@ def U(t_scale, tou, u_t_1, I, R, u_rest):
     \includegraphics[width=1\textwidth]{exercise/1.c.pdf}
     \caption{1.cpdf}
 \end{figure}
+
+\textbf{2、考虑突触输入电流为随时间变化的电流输入(Time-dependent solution)。则可知其膜电压变化的解为公式\ref*{卷积}。现在我们交换公式\ref*{卷积}里卷积的顺序(卷积交换顺序不影响结果)。然后对该式求微分，比较一下微分方程两端的结果。}\\
+
+这一段推导到了一上午。主要是高数的很多知识都忘记了。
+
+\begin{equation}
+    \begin{aligned}
+        u(t)&=u_{rest}+\frac{R}{\tau_m}\int_0^\infty e^{-\frac{t-s}{\tau_m}}I(s)ds\\
+        &\text{两边求导}\\
+        \frac{du(t)}{dt}&=\frac{1}{dt}[u_{rest}+\frac{R}{\tau_m}\int_0^\infty e^{-\frac{t-s}{\tau_m}}I(s)ds]\\
+    \end{aligned}
+\end{equation}
+
+这个地方踩了一个大坑，实际的积分上限是t，($t\to\infty$)区间没有意义，如果上限使用$\infty$，计算不出结果。
+
+\begin{equation}
+    \begin{aligned}
+        \frac{du(t)}{dt}&=\frac{1}{dt}[u_{rest}+\frac{R}{\tau_m}\int_0^t e^{-\frac{t-s}{\tau_m}}I(s)ds]\\
+        \frac{du(t)}{dt}&=\frac{1}{dt}[u_{rest}+\frac{R}{\tau_m}e^{-\frac{t}{\tau_m}}\int_0^t e^{\frac{s}{\tau_m}}I(s)ds]\\
+    \end{aligned}
+\end{equation}
+
+这里链式积分和不定积分求导，应用$\Phi'(x)=\frac{d}{dx}\int_{\phi(x)}^{\varphi(x)}f(t)dt=f[\varphi(x)]\varphi'(x)-f[\phi(x)]\phi'(x)$
+
+\begin{equation}
+    \begin{aligned}
+        \frac{du(t)}{dt}&=\frac{R}{\tau_m}\frac{-1}{\tau_m}[\int_0^t e^{-\frac{t-s}{\tau_m}}I(s)ds+\frac{R}{\tau_m}I(t)]\\
+        \tau_m\frac{du(t)}{dt}&=-[u(t)-u_{rest}]+RI(t)\\
+    \end{aligned}
+\end{equation}
+
+最终得到的形式和公式\ref*{微分方程}一致。这也正常，毕竟本身就是公式\ref*{微分方程}的一个解。
+
+\textbf{3、假设在$t_f$时刻神经递质被传递到突触出，浓度为$\tau_x\frac{\text{d}x}{\text{d}t}=-x+\delta(t-t_f)$，神经递质与突触受体结合，打开离子通道，产生电流为$\tau_s\frac{\text{d}I}{\text{d}t}=-I+I_0x(t)$，并引起膜电压变化为$\tau_m\frac{\text{d}u}{\text{d}t}=-u+RI(t)$，求出膜电压变化公式。这三个传递构成了一个线性方程组(Chain of linear equations)}
+
+对三条线性方程依次求解即可，我决定利用mathematica来求解，解得:
+
+\begin{equation}
+    x(t)=\frac{1}{\tau_x}e^{-\frac{t-t_f}{\tau_x}}\theta(t-t_f)
+\end{equation}
+
+\begin{equation}
+    I(t)=\frac{I_0(e^{\frac{t_f-t}{\tau_s}}-e^{\frac{t_f-t}{\tau_x}})}{\tau_s-\tau_x}\theta (t-t_f)
+\end{equation}
+
+\begin{equation}
+    \begin{aligned}
+        u(t)&=I_0 R \theta (t-t_f) e^{-\frac{t}{\tau_m}-\frac{t}{\tau_s}-\frac{t}{\tau_x}}\\
+        &(\tau_s (\tau_x-\tau_m) e^{\frac{t}{\tau_m}+\frac{t}{\tau_x}+\frac{t_f}{\tau_s}}+\\
+        &\tau_m (\tau_s-\tau_x) e^{\frac{t}{\tau_s}+\frac{t}{\tau_x}+\frac{t_f}{\tau_m}}+\\
+        &\tau_x (\tau_m-\tau_s) e^{\frac{t}{\tau_m}+\frac{t}{\tau_s}+\frac{t_f}{\tau_x}})\\
+        &/((\tau_s-\tau_m) (\tau_m-\tau_x) (\tau_s-\tau_x))
+    \end{aligned}
+\end{equation}
+
+具有某种规律性的美感。本章完结！
+
+\chapter{离子通道和 Hodgkin–Huxley 模型}
 
 \end{document}
