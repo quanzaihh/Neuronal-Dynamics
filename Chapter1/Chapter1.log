@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.24)  31 MAY 2023 17:01
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.24)  31 MAY 2023 20:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -821,6 +821,8 @@ Overfull \hbox (24.66925pt too wide) in paragraph at lines 330--331
 
 [11] [12]
 第二章
+File: HH模型电路图.png Graphic file (type bmp)
+<HH模型电路图.png>
 [13
 
 ] (./Chapter1.aux)
@@ -828,10 +830,10 @@ Package rerunfilecheck Info: File `Chapter1.out' has not changed.
 (rerunfilecheck)             Checksum: 9F552DD9753726A86F1A142ADBA64C3C;1083.
  ) 
 Here is how much of TeX's memory you used:
- 20332 strings out of 476683
- 440421 string characters out of 5807575
+ 20352 strings out of 476683
+ 441272 string characters out of 5807575
  1861012 words of memory out of 5000000
- 40169 multiletter control sequences out of 15000+600000
+ 40188 multiletter control sequences out of 15000+600000
  531079 words of font info for 148 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  94i,9n,97p,495b,1566s stack positions out of 10000i,1000n,20000p,200000b,200000s

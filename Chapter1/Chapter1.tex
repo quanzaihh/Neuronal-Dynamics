@@ -1,4 +1,4 @@
-% \special{dvipdfmx:config z 0}
+\special{dvipdfmx:config z 0}
 \documentclass[12pt, a4paper, oneside]{ctexbook}
 \usepackage{amsmath, amsthm, amssymb, bm, graphicx, hyperref, mathrsfs, float, subfigure, svg}
 \usepackage{listings}
@@ -363,5 +363,17 @@ def U(t_scale, tou, u_t_1, I, R, u_rest):
 具有某种规律性的美感。本章完结！
 
 \chapter{离子通道和 Hodgkin–Huxley 模型}
+
+Hodgkin–Huxley模型其等效电路图和LIF模型的区别是它考虑的钠离子和钾离子两个通道，并且给出了生物学上的具体意义。电路图如下所示：
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{HH模型电路图.png}
+    \caption{HH模型电路图}
+\end{figure}
+
+它一共有3个支路，$R_{Na}、R_{K}$支路是钠离子、钾离子通道的等效电阻，$E_{Na}、E_{K}$是钠离子、钾离子的通道电势。这个电势是由离子浓度差引起的。它有一个专业名词叫能斯特电势(Nernst potential)。
+
+
 
 \end{document}
