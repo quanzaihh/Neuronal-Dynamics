@@ -5,3 +5,4 @@
 \contentsline {section}{\numberline {1.4}总结}{8}{section.1.4}%
 \contentsline {section}{\numberline {1.5}练习题}{9}{section.1.5}%
 \contentsline {chapter}{\numberline {第二章\hspace {.3em}}离子通道和 Hodgkin–Huxley 模型}{13}{chapter.2}%
+\contentsline {section}{\numberline {2.1}输入方波激励}{15}{section.2.1}%
