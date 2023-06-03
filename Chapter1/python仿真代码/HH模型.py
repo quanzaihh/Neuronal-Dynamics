@@ -2,6 +2,11 @@ import brian2 as b2
 from neurodynex3.tools import input_factory
 from matplotlib import pyplot as plt
 import numpy as np
+import scipy.signal as signal
+from tqdm import tqdm
+
+b2.prefs.codegen.target = 'cython'
+
 
 def HH_neuron(input_current, simulation_time):
     # 定义神经元参数
@@ -47,6 +52,7 @@ def HH_neuron(input_current, simulation_time):
 
     return st_mon
 
+
 def plot_data(state_monitor, title=None):
     """Plots the state_monitor variables ["vm", "I_e", "m", "n", "h"] vs. time.
 
@@ -89,9 +95,44 @@ def plot_data(state_monitor, title=None):
     if title is not None:
         plt.suptitle(title)
 
-    plt.savefig(".\HH模型方波激励.pdf")
+    # plt.savefig(".\HH模型方波激励.pdf")
     plt.show()
 
-current = input_factory.get_step_current(10, 45, b2.ms, 7.2 * b2.uA)
-state_monitor = HH_neuron(current, 70 * b2.ms)
+
+def get_spike_time(state_monitor):
+    m = np.asarray(state_monitor.m[0] / b2.volt)
+    t = state_monitor.t / b2.ms
+    peak = signal.find_peaks(m, height=0.9)[0]
+    t = t[peak]
+    t = t[1:] - t[:-1]
+    if len(t)!=0:
+        T = sum(t)/len(t)
+        v = float(1) / T
+    else:
+        v = 0
+    return v
+
+current = input_factory.get_step_current(10, 11, b2.ms, 1 * b2.uA)
+state_monitor = HH_neuron(current, 50 * b2.ms)
 plot_data(state_monitor, title="HH Neuron, step current")
+
+
+# v = []
+# I = []
+# for ds in tqdm(range(200)):
+#     d = ds * 0.1
+#     current = input_factory.get_step_current(10, 150, b2.ms, d * b2.uA)
+#     state_monitor = HH_neuron(current, 200 * b2.ms)
+#     # plot_data(state_monitor, title="HH Neuron, step current")
+#     v.append(get_spike_time(state_monitor)*1000)
+#     I.append(d)
+# print(v)
+# plt.xlabel("I (uA)")
+# plt.ylabel("fire rate (Hz)")
+# plt.title("HH gain function")
+# plt.plot(I, v)
+# plt.savefig(".\HH增益函数.pdf")
+# plt.show()
+
+
+
