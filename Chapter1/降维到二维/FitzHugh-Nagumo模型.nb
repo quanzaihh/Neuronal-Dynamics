@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      8957,        244]
-NotebookOptionsPosition[      8433,        227]
-NotebookOutlinePosition[      8820,        244]
-CellTagsIndexPosition[      8777,        241]
+NotebookDataLength[     10197,        272]
+NotebookOptionsPosition[      9543,        252]
+NotebookOutlinePosition[      9930,        269]
+CellTagsIndexPosition[      9887,        266]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -32,6 +32,8 @@ Cell[BoxData[
   3.895618556002905*^9, 3.895618591937919*^9}},
  CellLabel->
   "In[3255]:=",ExpressionUUID->"3554b1ba-1a13-46a2-b130-9f5d1681093c"],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[{
  RowBox[{
@@ -223,7 +225,30 @@ Cell[BoxData[{
    3.8956165236304116`*^9, 3.8956165612743793`*^9}, {3.8956189051212893`*^9, 
    3.8956189316334486`*^9}},
  CellLabel->
-  "In[3256]:=",ExpressionUUID->"0a4f96ab-447f-4f9d-9787-a016bb220255"]
+  "In[3256]:=",ExpressionUUID->"0a4f96ab-447f-4f9d-9787-a016bb220255"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "CloudConnect","vwarn",
+   "\"This version of \
+\\!\\(\\*RowBox[{\\\"\\\\\\\"Mathematica\\\\\\\"\\\"}]\\) will no longer be \
+supported for use with the Wolfram Cloud beginning \
+\\!\\(\\*RowBox[{\\\"\\\\\\\"Sun 1 Oct 2023\\\\\\\"\\\"}]\\). \
+\\!\\(\\*TemplateBox[List[\\\"\\\\\\\"Please \\\\\\\"\\\", \
+TemplateBox[List[\\\"\\\\\\\"upgrade your license\\\\\\\"\\\", \
+\\\"https://store.wolfram.com/view/app/mathematica/upgrade?license=L9999-9999\
+\\\"], \\\"HyperlinkURL\\\"], \\\"\\\\\\\" or \\\\\\\"\\\", TemplateBox[List[\
+\\\"\\\\\\\"contact us\\\\\\\"\\\", \
+\\\"https://www.wolfram.com/contact-us?description=L9999-9999+will+no+longer+\
+be+supported+for+use+with+the+Wolfram+Cloud+beginning+Sun+1+Oct+2023+00%3A00%\
+3A00.\\\"], \\\"HyperlinkURL\\\"], \\\"\\\\\\\".\\\\\\\"\\\"], \\\"RowDefault\
+\\\"]\\)\"",2,1,1,24608157724820596179,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.8956359038373604`*^9},
+ CellLabel->
+  "\:6b63\:5728\:8ba1\:7b97In[1]:=",ExpressionUUID->"f7a45f87-f5da-484f-8730-\
+a13e6895032e"]
+}, Open  ]]
 },
 WindowSize->{887, 927},
 WindowMargins->{{507, Automatic}, {-6, Automatic}},
@@ -245,7 +270,10 @@ CellTagsIndex->{}
 Notebook[{
 Cell[558, 20, 157, 3, 66, "Input",ExpressionUUID->"e0f13cad-d039-4d2e-8d34-72339671183d"],
 Cell[718, 25, 388, 8, 43, "Input",ExpressionUUID->"3554b1ba-1a13-46a2-b130-9f5d1681093c"],
-Cell[1109, 35, 7320, 190, 983, "Input",ExpressionUUID->"0a4f96ab-447f-4f9d-9787-a016bb220255"]
+Cell[CellGroupData[{
+Cell[1131, 37, 7320, 190, 983, "Input",ExpressionUUID->"0a4f96ab-447f-4f9d-9787-a016bb220255"],
+Cell[8454, 229, 1073, 20, 94, "Message",ExpressionUUID->"f7a45f87-f5da-484f-8730-a13e6895032e"]
+}, Open  ]]
 }
 ]
 *)
