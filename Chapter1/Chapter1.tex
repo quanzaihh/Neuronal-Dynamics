@@ -1,6 +1,6 @@
 % \special{dvipdfmx:config z 0}
 \documentclass[12pt, a4paper, oneside]{ctexbook}
-\usepackage{amsmath, amsthm, amssymb, bm, graphicx, hyperref, mathrsfs, float, subfigure, svg}
+\usepackage{amsmath, amsthm, amssymb, bm, graphicx, hyperref, mathrsfs, float, subfigure, svg, color}
 \usepackage{listings}
 \usepackage{ctex}
 
@@ -467,6 +467,9 @@ HH模型很好的契合了生物模型。但是4个微分方程组成的微分�
 
 \section{FitzHugh-Nagumo模型}
 
+
+
+
 FitzHugh-Nagumo模型是最早提出的HH简化模型，它成功的描述了神经元的发射特性。它表示为如下形式：
 
 \begin{equation}
@@ -476,7 +479,7 @@ FitzHugh-Nagumo模型是最早提出的HH简化模型，它成功的描述了神
     \end{aligned}
 \end{equation}
 
-第一条式子描述的是膜电压的充电过程，第二条式子描述的是恢复过程，w是表征恢复的变量。这是一个很简单的线性系统，然而神奇的是它能很好的表征发射过程。接下来我们利用相图分析法（phase analysis）来分析它的变化过程。这个系统，u和w都在随t而变化，将u和w的变化趋势投影到u-w平面，就能得到其相图，如下图所示。图中箭头是变化趋势，我们绘制du/dt为0的曲线以及dw/dt为零的线，他们称为零斜率线(nullclines)，如图中绿线及黄线所示。他们有一个交点，这个交点邻域内的箭头都是指向焦点的，称为鞍点。红线是初始值为(-2,0.5)的点的运动轨迹，可以看到是向鞍点靠拢的。图(b)是对应的电压变化图。
+第一条式子描述的是膜电压的充电过程，第二条式子描述的是恢复过程，w是表征恢复的变量。这是一个很简单的线性系统，然而神奇的是它能很好的表征发射过程。接下来我们利用相图分析法（phase analysis）来分析它的变化过程。这个系统，u和w都在随t而变化，将u和w的变化趋势投影到u-w平面，就能得到其相图，如下图所示。图中箭头是变化趋势，我们绘制du/dt为0的曲线以及dw/dt为零的线，他们称为零斜率线(nullclines)，如图中绿线及黄线所示。他们有一个交点，称为平衡点。红线是初始值为(-2,0.5)的点的运动轨迹，可以看到是向平衡点靠拢的。图(b)是对应的电压变化图，并不会产生脉冲发射。
 
 \begin{figure}[H]
     \centering
@@ -485,7 +488,73 @@ FitzHugh-Nagumo模型是最早提出的HH简化模型，它成功的描述了神
     \caption{Is=0时，FN模型}
 \end{figure}
 
+随着输入电流的增大，$u_{nullclines}$曲线会向上平移，平衡点的位置也会改变。现在我们定量的分析一下平衡点。记平衡点为$u_{ncs}$，$w_{ncs}$，我们需要分析平衡点周围的一个邻域的变化趋势。做如下变量替换:$n=u-u_{ncs}$，$v=w-w_{ncs}$，记原微分方程组为:$\frac{du}{dt}=F(u,w)$，$\frac{dw}{dt}=G(u,w)$，可得$\frac{dn}{dt}=F(n+u_{ncs},v+w_{ncs})$，$\frac{dv}{dt}=G(n+u_{ncs},v+w_{ncs})$。然后我们求取二阶偏导，得到导数的变化趋势，即：
 
+\begin{equation}
+    \begin{aligned}
+        \frac{d^2n}{dt^2}&=\frac{\partial F(n+u_{ncs},v+w_{ncs})}{\partial n}\frac{\partial n}{\partial t}+\frac{\partial G(n+u_{ncs},v+w_{ncs})}{\partial n}\frac{\partial v}{\partial t}\\
+        &=F_nF(n+u_{ncs},v+w_{ncs})+G_nG(n+u_{ncs},v+w_{ncs})\\
+        \frac{d^2v}{dt^2}&=\frac{\partial F(n+u_{ncs},v+w_{ncs})}{\partial v}\frac{\partial v}{\partial t}+\frac{\partial G(n+u_{ncs},v+w_{ncs})}{\partial v}\frac{\partial v}{\partial t}\\
+        &=F_vF(n+u_{ncs},v+w_{ncs})+G_vG(n+u_{ncs},v+w_{ncs})
+    \end{aligned}
+\end{equation}
+
+上式可以被写作矩阵的形式:
+
+\begin{equation}
+    \frac{d}{dt}
+    \begin{pmatrix}
+        F(n+u_{ncs},v+w_{ncs})\\
+        G(n+u_{ncs},v+w_{ncs})
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        F_n & G_n\\
+        F_v & G_v
+    \end{pmatrix}
+    \begin{pmatrix}
+        F(n+u_{ncs},v+w_{ncs})\\
+        G(n+u_{ncs},v+w_{ncs})
+    \end{pmatrix}
+\end{equation}
+
+求解上式的特征值$\lambda_1$和$\lambda_2$，其中有6种情况，具体可见\href{https://zhuanlan.zhihu.com/p/141475551}{[非线性系统，平衡点稳定性]}：\\
+1、当$\lambda_1<\lambda_2<0$时，为稳定点(Stable Node)。\\
+2、当$\lambda_1>\lambda_2>0$时，为不稳定点(Unstable Node)。\\
+3、当$\lambda_1>0>\lambda_2$时，为鞍点(Saddle)。\\
+4、当$\lambda_{1，2}=\alpha+j\beta,\alpha>0$，为不稳定焦点(Unstable Focus)。\\
+5、当$\lambda_{1，2}=\alpha+j\beta,\alpha=0$，为中心点(Center)。\\
+6、当$\lambda_{1，2}=\alpha+j\beta,\alpha<0$，为稳定焦点(Stable Focus)。\\
+
+当我们将电流逐渐增大时，求解的特征值也在发生变化。当$I\leqslant0.1mA$时，平衡点为稳定点；当$0.1mA<I\leqslant0.59mA$时，平衡点为稳定焦点；当$0.59mA<I$时，平衡点为不稳定焦点，此时开始周期震荡并发射脉冲，如下图所示。
+
+\begin{figure}[H]
+    \centering
+    \subfigure[相图]{\includegraphics[width=0.4\textwidth]{降维到二维/Is=58FN相图.pdf}}
+    \subfigure[电压变化图]{\includegraphics[width=0.4\textwidth]{降维到二维/Is=58FN电压.pdf}}
+    \caption{Is=58时，FN模型}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \subfigure[相图]{\includegraphics[width=0.4\textwidth]{降维到二维/Is=59FN相图.pdf}}
+    \subfigure[电压变化图]{\includegraphics[width=0.4\textwidth]{降维到二维/Is=59FN电压.pdf}}
+    \caption{Is=59时，FN模型}
+\end{figure}
+
+真酷~~~~~~~~~~~~~
+
+\section{Morris-Lecar模型}
+\textcolor[rgb]{1,0,0}{本小节仿真代码链接：\href{./降维到二维/Morris-Lecar模型.nb}{Morris-Lecar模型.nb}}\\
+下面讨论一个更cool的模型。这个模型可以模拟第二章中讨论的细胞发射脉冲的I型和II型的情况。它的微分方程如下：
+
+\begin{equation}
+    \begin{aligned}
+        C_m\frac{du}{dt}&=-g_k n (u-E_k)-g_l (u-E_l)-g_{na} m_\infty (u-E_{na})+I\\
+        \frac{dw}{dt}&=\phi  (w_\infty-w)\\
+        m_\infty&=0.5 (1+\tanh(\frac{u-u_1}{u_2}))
+    \end{aligned}
+\end{equation}
 
 \end{document}
 
