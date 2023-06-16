@@ -1,4 +1,4 @@
-% \special{dvipdfmx:config z 0}
+\special{dvipdfmx:config z 0}
 \documentclass[12pt, a4paper, oneside]{ctexbook}
 \usepackage{amsmath, amsthm, amssymb, bm, graphicx, hyperref, mathrsfs, float, subfigure, svg, color}
 \usepackage{listings}
@@ -466,10 +466,7 @@ HH模型从生物物理的角度解释了神经元的原理。其仿真结果与
 HH模型很好的契合了生物模型。但是4个微分方程组成的微分方程组是难以使用计算机去计算模拟的，因此我们需要对它进行降维。具体的做法是：由于m参数变化速率很快，因此可以将其看作是一瞬间就完成了的，作为一个常数，而n，h参数具有同样的变化特性，因此拟合为一个描述恢复的微分方程，加上膜电压u的那个微分方程，一共两个维度。从而将4维降到了两维。具体由两个模型给出。
 
 \section{FitzHugh-Nagumo模型}
-
-
-
-
+\textcolor[rgb]{1,0,0}{本小节仿真代码链接：\href{./降维到二维/FitzHugh-Nagumo模型.nb}{FitzHugh-Nagumo模型.nb}}\\
 FitzHugh-Nagumo模型是最早提出的HH简化模型，它成功的描述了神经元的发射特性。它表示为如下形式：
 
 \begin{equation}
@@ -542,7 +539,7 @@ FitzHugh-Nagumo模型是最早提出的HH简化模型，它成功的描述了神
     \caption{Is=59时，FN模型}
 \end{figure}
 
-真酷~~~~~~~~~~~~~
+\text{真酷~~~~~~~~~~~~~}
 
 \section{Morris-Lecar模型}
 \textcolor[rgb]{1,0,0}{本小节仿真代码链接：\href{./降维到二维/Morris-Lecar模型.nb}{Morris-Lecar模型.nb}}\\
@@ -551,10 +548,41 @@ FitzHugh-Nagumo模型是最早提出的HH简化模型，它成功的描述了神
 \begin{equation}
     \begin{aligned}
         C_m\frac{du}{dt}&=-g_k n (u-E_k)-g_l (u-E_l)-g_{na} m_\infty (u-E_{na})+I\\
-        \frac{dw}{dt}&=\phi  (w_\infty-w)\\
-        m_\infty&=0.5 (1+\tanh(\frac{u-u_1}{u_2}))
+        \frac{dn}{dt}&=\phi  (n_\infty-n)\\
+        m_\infty&=0.5 (1+\tanh(\frac{u-u_1}{u_2}))\\
+        n_\infty&=0.5 (1+\tanh(\frac{u-u_3}{u_4}))\\
+        \phi &=0.1 \cosh (\frac{u-u_3}{2 u_4})
     \end{aligned}
 \end{equation}
+
+这个模型也是简化的HH模型，同样，我们绘制它的相图，研究它的动力学原理。可以看到，$u_nullclines$和$n_nullclines$存在三个平衡点。通过计算特征值，可以知道，最左边的一个平衡点是稳定结点(node)，中间的平衡点是鞍点(saddle)，最右边的平衡点是不稳定焦点。它和FitzHugh-Nagumo模型的分析差不多，当输入电流增大时，$u_nullclines$向上平移，左边的两个平衡点融合消失，整个模型开始在最右边的不稳定焦点处循环震荡，称为极限环(limit cycle)，激发周期性脉冲。
+
+\begin{figure}[H]
+    \centering
+    \subfigure[相图]{\includegraphics[width=0.4\textwidth]{降维到二维/Is=0ML相图.pdf}}
+    \subfigure[电压变化图]{\includegraphics[width=0.4\textwidth]{降维到二维/Is=0ML电压.pdf}}
+    \caption{Is=0时，ML模型}
+\end{figure}
+
+但是，极限环经过左边两个平衡点的不同位置却会导致两种不同的情况。当极限环经过结点转向鞍点时，尽管结点已经消失，但它所处的那片区域的速率依然非常低，因此脉冲激发的周期非常大，随着输入电流的增大，脉冲激发的周期逐渐减小，从而形成了I型的情况，即电流越过阈值后，脉冲激发速率从零开始变化，称为鞍结分叉型(saddle-node bifurcation)，如下图所示:
+
+\begin{figure}[H]
+    \centering
+    \subfigure[相图]{\includegraphics[width=0.4\textwidth]{降维到二维/Is=33.3ML鞍结分叉相图.pdf}}
+    \subfigure[电压变化图]{\includegraphics[width=0.4\textwidth]{降维到二维/Is=33.3ML鞍结分叉电压.pdf}}
+    \caption{Is=33.3时，ML鞍结分叉模型(u4=10)}
+\end{figure}
+
+另一种是，极限环不经过结点，在鞍点的右侧划过，当电流超过阈值，产生极限环后，脉冲激发的速率从0阶跃到了一个较快的频率，从而形成二型的情况，称为Hopf分叉(Hopf bifurcation)，如下图所示：
+
+\begin{figure}[H]
+    \centering
+    \subfigure[相图]{\includegraphics[width=0.4\textwidth]{降维到二维/Is=33.3MLHopf分叉相图.pdf}}
+    \subfigure[电压变化图]{\includegraphics[width=0.4\textwidth]{降维到二维/Is=33.3MLHopf分叉电压.pdf}}
+    \caption{Is=33.3时，ML鞍结分叉模型(u4=6)}
+\end{figure}
+
+OK，这一章把HH模型简化到二维。后面还对脉冲输入和连续输入做了讨论，就不表了，准备跳到第五章去。第五章开始第二部分，就要进一步简化HH模型为一维，讨论广义的非线性LIF模型了。
 
 \end{document}
 

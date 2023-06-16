@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.24)  14 JUN 2023 17:53
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.24)  16 JUN 2023 15:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -852,7 +852,7 @@ Missing character: There is no ， (U+FF0C) in font [lmroman8-regular]:mapping=t
 Missing character: There is no ， (U+FF0C) in font [lmroman8-regular]:mapping=tex-text;!
 Missing character: There is no ， (U+FF0C) in font [lmroman8-regular]:mapping=tex-text;!
 
-Underfull \hbox (badness 10000) in paragraph at lines 521--528
+Underfull \hbox (badness 10000) in paragraph at lines 518--525
 
  []
 
@@ -864,17 +864,31 @@ File: 降维到二维/Is=59FN相图.pdf Graphic file (type pdf)
 <use 降维到二维/Is=59FN相图.pdf>
 File: 降维到二维/Is=59FN电压.pdf Graphic file (type pdf)
 <use 降维到二维/Is=59FN电压.pdf>
-[20] [21] (./Chapter1.aux)
+[20] [21]
+File: 降维到二维/Is=0ML相图.pdf Graphic file (type pdf)
+<use 降维到二维/Is=0ML相图.pdf>
+File: 降维到二维/Is=0ML电压.pdf Graphic file (type pdf)
+<use 降维到二维/Is=0ML电压.pdf>
+File: 降维到二维/Is=33.3ML鞍结分叉相图.pdf Graphic file (type pdf)
+<use 降维到二维/Is=33.3ML鞍结分叉相图.pdf>
+File: 降维到二维/Is=33.3ML鞍结分叉电压.pdf Graphic file (type pdf)
+<use 降维到二维/Is=33.3ML鞍结分叉电压.pdf>
+ [22]
+File: 降维到二维/Is=33.3MLHopf分叉相图.pdf Graphic file (type pdf)
+<use 降维到二维/Is=33.3MLHopf分叉相图.pdf>
+File: 降维到二维/Is=33.3MLHopf分叉电压.pdf Graphic file (type pdf)
+<use 降维到二维/Is=33.3MLHopf分叉电压.pdf>
+ [23] (./Chapter1.aux)
 Package rerunfilecheck Info: File `Chapter1.out' has not changed.
 (rerunfilecheck)             Checksum: 367E6AE749F2B289AA3122DB4E12DE19;1640.
  ) 
 Here is how much of TeX's memory you used:
- 20452 strings out of 476683
- 444349 string characters out of 5807575
+ 20500 strings out of 476683
+ 445739 string characters out of 5807575
  1861012 words of memory out of 5000000
- 40278 multiletter control sequences out of 15000+600000
+ 40320 multiletter control sequences out of 15000+600000
  531087 words of font info for 149 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  94i,11n,97p,495b,1566s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Chapter1.pdf (23 pages).
+Output written on Chapter1.pdf (25 pages).
